@@ -327,3 +327,4 @@ Claude Code + User
 - [Tailwind CSS 문서](https://tailwindcss.com/docs)
 
 **Note**: 이 프로젝트는 Supabase Auth를 활용한 실제 인증 시스템이 구현되어 있습니다. Supabase 프로젝트를 생성하고 환경 변수를 설정하면 즉시 사용 가능합니다.
+# cc-example
