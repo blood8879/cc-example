@@ -3,7 +3,14 @@
 import { Search, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { MultiSelect } from "@/components/ui/multi-select";
 import {
   BUDGET_OPTIONS,
   REGION_OPTIONS,
@@ -30,22 +37,12 @@ export function FilterSidebar({ filters, onFiltersChange }: FilterSidebarProps) 
     onFiltersChange({ ...filters, region: value });
   };
 
-  const handleEnvironmentChange = (value: EnvironmentFilter, checked: boolean) => {
-    const currentValues = filters.environment || [];
-    const newValues = checked
-      ? [...currentValues, value]
-      : currentValues.filter((v) => v !== value);
-
-    onFiltersChange({ ...filters, environment: newValues });
+  const handleEnvironmentChange = (values: EnvironmentFilter[]) => {
+    onFiltersChange({ ...filters, environment: values });
   };
 
-  const handleSeasonChange = (value: SeasonFilter, checked: boolean) => {
-    const currentValues = filters.season || [];
-    const newValues = checked
-      ? [...currentValues, value]
-      : currentValues.filter((v) => v !== value);
-
-    onFiltersChange({ ...filters, season: newValues });
+  const handleSeasonChange = (values: SeasonFilter[]) => {
+    onFiltersChange({ ...filters, season: values });
   };
 
   const handleReset = () => {
@@ -101,97 +98,59 @@ export function FilterSidebar({ filters, onFiltersChange }: FilterSidebarProps) 
       {/* 예산 */}
       <div>
         <label className="mb-2 block text-sm font-medium">💰 예산</label>
-        <div className="space-y-2">
-          {BUDGET_OPTIONS.map((option) => (
-            <div
-              key={option.value}
-              className="flex items-center space-x-3 cursor-pointer"
-              onClick={() => handleBudgetChange(option.value)}
-            >
-              <div className="relative flex h-5 w-5 items-center justify-center">
-                <div className="h-5 w-5 rounded-full border-2 border-gray-400 bg-white" />
-                {filters.budget === option.value && (
-                  <div className="absolute h-3 w-3 rounded-full bg-primary" />
-                )}
-              </div>
-              <label className="cursor-pointer text-sm font-medium leading-none">
+        <Select value={filters.budget} onValueChange={handleBudgetChange}>
+          <SelectTrigger className="w-full">
+            <SelectValue placeholder="예산을 선택하세요" />
+          </SelectTrigger>
+          <SelectContent>
+            {BUDGET_OPTIONS.map((option) => (
+              <SelectItem key={option.value} value={option.value}>
                 {option.label}
-              </label>
-            </div>
-          ))}
-        </div>
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
 
       {/* 지역 */}
       <div>
         <label className="mb-2 block text-sm font-medium">📍 지역</label>
-        <div className="space-y-2">
-          {REGION_OPTIONS.map((option) => (
-            <div
-              key={option.value}
-              className="flex items-center space-x-3 cursor-pointer"
-              onClick={() => handleRegionChange(option.value)}
-            >
-              <div className="relative flex h-5 w-5 items-center justify-center">
-                <div className="h-5 w-5 rounded-full border-2 border-gray-400 bg-white" />
-                {(filters.region === option.value || (!filters.region && option.value === "전체")) && (
-                  <div className="absolute h-3 w-3 rounded-full bg-primary" />
-                )}
-              </div>
-              <label className="cursor-pointer text-sm font-medium leading-none">
+        <Select value={filters.region || "전체"} onValueChange={handleRegionChange}>
+          <SelectTrigger className="w-full">
+            <SelectValue placeholder="지역을 선택하세요" />
+          </SelectTrigger>
+          <SelectContent>
+            {REGION_OPTIONS.map((option) => (
+              <SelectItem key={option.value} value={option.value}>
                 {option.label}
-              </label>
-            </div>
-          ))}
-        </div>
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
 
       {/* 환경 */}
       <div>
         <label className="mb-2 block text-sm font-medium">🌿 환경</label>
-        <div className="space-y-2">
-          {ENVIRONMENT_OPTIONS.map((option) => (
-            <div key={option.value} className="flex items-center space-x-2">
-              <Checkbox
-                id={`environment-${option.value}`}
-                checked={filters.environment?.includes(option.value) || false}
-                onCheckedChange={(checked) =>
-                  handleEnvironmentChange(option.value, checked as boolean)
-                }
-              />
-              <label
-                htmlFor={`environment-${option.value}`}
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              >
-                {option.label}
-              </label>
-            </div>
-          ))}
-        </div>
+        <MultiSelect
+          options={ENVIRONMENT_OPTIONS}
+          value={filters.environment || []}
+          onChange={handleEnvironmentChange}
+          placeholder="환경을 선택하세요"
+          className="w-full"
+        />
       </div>
 
       {/* 최고 계절 */}
       <div>
         <label className="mb-2 block text-sm font-medium">🍂 최고 계절</label>
-        <div className="space-y-2">
-          {SEASON_OPTIONS.map((option) => (
-            <div key={option.value} className="flex items-center space-x-2">
-              <Checkbox
-                id={`season-${option.value}`}
-                checked={filters.season?.includes(option.value) || false}
-                onCheckedChange={(checked) =>
-                  handleSeasonChange(option.value, checked as boolean)
-                }
-              />
-              <label
-                htmlFor={`season-${option.value}`}
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              >
-                {option.label}
-              </label>
-            </div>
-          ))}
-        </div>
+        <MultiSelect
+          options={SEASON_OPTIONS}
+          value={filters.season || []}
+          onChange={handleSeasonChange}
+          placeholder="계절을 선택하세요"
+          className="w-full"
+        />
       </div>
     </div>
   );
