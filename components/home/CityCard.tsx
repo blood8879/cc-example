@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { City } from "@/types";
 import { Card } from "@/components/ui/card";
 import { Heart, ThumbsDown, DollarSign, MapPin, Coffee, Building2, TreePine, Briefcase, Sun, Cloud, Leaf, Snowflake } from "lucide-react";
@@ -19,7 +20,9 @@ export function CityCard({ city }: CityCardProps) {
   const [dislikeCount, setDislikeCount] = useState(city.dislikeCount);
 
   // 좋아요 버튼 클릭
-  const handleLike = () => {
+  const handleLike = (e: React.MouseEvent) => {
+    e.preventDefault(); // Link 네비게이션 방지
+    e.stopPropagation(); // 이벤트 전파 방지
     if (liked) {
       setLiked(false);
       setLikeCount((prev) => prev - 1);
@@ -34,7 +37,9 @@ export function CityCard({ city }: CityCardProps) {
   };
 
   // 싫어요 버튼 클릭
-  const handleDislike = () => {
+  const handleDislike = (e: React.MouseEvent) => {
+    e.preventDefault(); // Link 네비게이션 방지
+    e.stopPropagation(); // 이벤트 전파 방지
     if (disliked) {
       setDisliked(false);
       setDislikeCount((prev) => prev - 1);
@@ -77,16 +82,17 @@ export function CityCard({ city }: CityCardProps) {
   };
 
   return (
-    <Card className="group relative overflow-hidden transition-card hover:-translate-y-1 hover:shadow-card-hover">
-      {/* 대표 이미지 */}
-      <div className="relative h-48 w-full overflow-hidden bg-muted">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/60 z-10" />
-        <div className="absolute inset-0 flex items-center justify-center z-20">
-          <h3 className="text-3xl font-bold text-white">🏙️ {city.name}</h3>
+    <Link href={`/cities/${city.slug}`} className="block">
+      <Card className="group relative overflow-hidden transition-card hover:-translate-y-1 hover:shadow-card-hover cursor-pointer">
+        {/* 대표 이미지 */}
+        <div className="relative h-48 w-full overflow-hidden bg-muted">
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/60 z-10" />
+          <div className="absolute inset-0 flex items-center justify-center z-20">
+            <h3 className="text-3xl font-bold text-white">🏙️ {city.name}</h3>
+          </div>
         </div>
-      </div>
 
-      <div className="p-5">
+        <div className="p-5">
         {/* 상단 정보: 순위 배지와 설명 */}
         <div className="mb-4 flex items-start gap-3">
           {/* 순위 배지 */}
@@ -186,7 +192,8 @@ export function CityCard({ city }: CityCardProps) {
             <span className="text-sm font-medium">{dislikeCount}</span>
           </Button>
         </div>
-      </div>
-    </Card>
+        </div>
+      </Card>
+    </Link>
   );
 }

@@ -42,3 +42,34 @@ export interface CityFilters {
 
 // 정렬 타입
 export type SortOption = "like_desc" | "like_asc" | "name_asc";
+
+// 추천 장소 타입
+export interface Place {
+  id: string;
+  name: string;
+  category: "cafe" | "accommodation" | "attraction";
+  description: string;
+  imageUrl: string;
+  address: string;
+  tags: string[];
+}
+
+// 리뷰 타입
+export interface Review {
+  id: string;
+  author: string;
+  rating: number; // 1-5
+  content: string;
+  date: Date;
+  likeCount: number;
+}
+
+// 상세 도시 정보 타입
+export interface CityDetail extends City {
+  fullDescription: string;
+  images: string[]; // 갤러리 이미지들
+  places: Place[]; // 추천 장소들
+  reviews: Review[]; // 리뷰들
+  transportation: string; // 교통 정보
+  tips: string[]; // 여행 팁
+}
