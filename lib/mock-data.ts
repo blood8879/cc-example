@@ -1,4 +1,4 @@
-import { City } from "@/types";
+import { City, CityDetail } from "@/types";
 
 export const mockCities: City[] = [
   {
@@ -192,3 +192,235 @@ export const mockCities: City[] = [
     updatedAt: new Date(),
   },
 ];
+
+// 상세 도시 정보
+export const mockCityDetails: Record<string, CityDetail> = {
+  "gangnam-yeoksam": {
+    ...mockCities[0],
+    fullDescription:
+      "강남/역삼은 한국 IT 산업의 중심지로, 네이버, 카카오를 비롯한 수많은 스타트업과 대기업들이 밀집해 있습니다. 최신 트렌드의 카페와 레스토랑, 그리고 현대적인 코워킹 스페이스가 즐비해 디지털 노마드에게 최적의 환경을 제공합니다. 높은 생활비에도 불구하고 뛰어난 인프라와 네트워킹 기회로 인해 많은 워케이셔너들이 선호하는 지역입니다.",
+    images: [
+      "/images/gangnam-1.jpg",
+      "/images/gangnam-2.jpg",
+      "/images/gangnam-3.jpg",
+      "/images/gangnam-4.jpg",
+    ],
+    places: [
+      {
+        id: "p1",
+        name: "스타벅스 강남R점",
+        category: "cafe",
+        description: "넓은 공간과 콘센트가 많아 작업하기 좋은 스타벅스 리저브",
+        imageUrl: "/images/places/starbucks-gangnam.jpg",
+        address: "서울 강남구 테헤란로 152",
+        tags: ["와이파이", "콘센트", "조용함"],
+      },
+      {
+        id: "p2",
+        name: "패스트파이브 강남점",
+        category: "cafe",
+        description: "프리미엄 코워킹 스페이스, 1일권 이용 가능",
+        imageUrl: "/images/places/fastfive-gangnam.jpg",
+        address: "서울 강남구 테헤란로 322",
+        tags: ["코워킹", "회의실", "네트워킹"],
+      },
+      {
+        id: "p3",
+        name: "메이필드 호텔",
+        category: "accommodation",
+        description: "강남 중심부의 럭셔리 비즈니스 호텔",
+        imageUrl: "/images/places/mayfield-hotel.jpg",
+        address: "서울 강남구 테헤란로 94",
+        tags: ["럭셔리", "비즈니스", "수영장"],
+      },
+      {
+        id: "p4",
+        name: "코엑스",
+        category: "attraction",
+        description: "아시아 최대 규모의 복합 쇼핑몰 및 전시장",
+        imageUrl: "/images/places/coex.jpg",
+        address: "서울 강남구 영동대로 513",
+        tags: ["쇼핑", "전시", "도서관"],
+      },
+    ],
+    reviews: [
+      {
+        id: "r1",
+        author: "김노마드",
+        rating: 5,
+        content:
+          "IT 업계 종사자라면 최고의 선택입니다. 네트워킹 기회도 많고, 인프라도 완벽해요. 다만 생활비가 비싼 편이에요.",
+        date: new Date("2025-01-15"),
+        likeCount: 42,
+      },
+      {
+        id: "r2",
+        author: "박개발자",
+        rating: 4,
+        content:
+          "코워킹 스페이스가 정말 많아서 좋았어요. 카페에서도 작업하는 사람들이 많아서 혼자 있어도 외롭지 않아요.",
+        date: new Date("2025-01-10"),
+        likeCount: 28,
+      },
+      {
+        id: "r3",
+        author: "이워케이션",
+        rating: 3,
+        content:
+          "업무 환경은 최고지만 주거비가 너무 비싸요. 예산이 충분하다면 추천합니다.",
+        date: new Date("2025-01-05"),
+        likeCount: 15,
+      },
+    ],
+    transportation: "지하철 2호선 강남역, 역삼역 / 신분당선 강남역 / 9호선 신논현역",
+    tips: [
+      "점심시간(12-1시)에는 식당이 매우 혼잡하니 시간을 피하세요",
+      "코워킹 스페이스는 사전 예약이 필수입니다",
+      "주말에는 비교적 한적해서 카페 이용이 편합니다",
+      "교통카드는 필수! 대중교통이 매우 편리합니다",
+    ],
+  },
+  "hongdae-yeonnam": {
+    ...mockCities[1],
+    fullDescription:
+      "홍대/연남은 젊음과 예술의 거리로, 독특한 감성의 카페와 갤러리, 공방들이 가득합니다. 힙한 분위기에서 창의적인 영감을 받고 싶은 디지털 노마드들에게 인기가 많습니다. 강남보다 저렴한 물가와 다양한 문화 활동으로 워라밸을 중시하는 워케이셔너들이 선호합니다.",
+    images: [
+      "/images/hongdae-1.jpg",
+      "/images/hongdae-2.jpg",
+      "/images/hongdae-3.jpg",
+      "/images/hongdae-4.jpg",
+    ],
+    places: [
+      {
+        id: "p5",
+        name: "연트럴파크",
+        category: "cafe",
+        description: "연남동의 대표적인 감성 카페, 넓은 공간과 조용한 분위기",
+        imageUrl: "/images/places/yeonnam-cafe.jpg",
+        address: "서울 마포구 연남동 239-26",
+        tags: ["감성", "넓음", "조용함"],
+      },
+      {
+        id: "p6",
+        name: "망원한강공원",
+        category: "attraction",
+        description: "작업 후 산책하기 좋은 한강공원",
+        imageUrl: "/images/places/mangwon-hangang.jpg",
+        address: "서울 마포구 망원동",
+        tags: ["산책", "자전거", "피크닉"],
+      },
+      {
+        id: "p7",
+        name: "홍대 게스트하우스",
+        category: "accommodation",
+        description: "저렴한 가격에 편안한 숙소, 외국인 여행객 많음",
+        imageUrl: "/images/places/hongdae-guesthouse.jpg",
+        address: "서울 마포구 와우산로",
+        tags: ["저렴", "친절", "교류"],
+      },
+    ],
+    reviews: [
+      {
+        id: "r4",
+        author: "최감성",
+        rating: 5,
+        content:
+          "카페 투어하기 최고의 동네! 매일 다른 카페에서 작업하는 재미가 있어요. 밤에는 공연도 많아서 문화생활도 풍부합니다.",
+        date: new Date("2025-01-20"),
+        likeCount: 56,
+      },
+      {
+        id: "r5",
+        author: "정크리에이터",
+        rating: 4,
+        content:
+          "창의적인 영감을 받기에 너무 좋은 곳이에요. 다만 주말에는 사람이 너무 많아요.",
+        date: new Date("2025-01-12"),
+        likeCount: 34,
+      },
+    ],
+    transportation: "지하철 2호선 홍대입구역 / 경의중앙선 홍대역",
+    tips: [
+      "연남동 쪽이 홍대역보다 조용해서 작업하기 좋아요",
+      "주말 저녁에는 매우 혼잡하니 피하세요",
+      "망원시장에서 저렴하게 장을 볼 수 있어요",
+    ],
+  },
+  "jeju-aewol": {
+    ...mockCities[5],
+    fullDescription:
+      "제주 애월은 에메랄드빛 바다와 아름다운 일몰로 유명한 제주 서쪽 해안의 작은 마을입니다. 최근 감성 카페와 게스트하우스가 많이 생기면서 워케이션 명소로 떠올랐습니다. 느린 삶의 여유와 자연 속에서의 힐링을 원하는 디지털 노마드들에게 최적의 장소입니다.",
+    images: [
+      "/images/aewol-1.jpg",
+      "/images/aewol-2.jpg",
+      "/images/aewol-3.jpg",
+      "/images/aewol-4.jpg",
+    ],
+    places: [
+      {
+        id: "p8",
+        name: "애월 해안도로 카페",
+        category: "cafe",
+        description: "바다를 바라보며 작업할 수 있는 오션뷰 카페",
+        imageUrl: "/images/places/aewol-ocean-cafe.jpg",
+        address: "제주 제주시 애월읍 애월해안로",
+        tags: ["오션뷰", "감성", "일몰"],
+      },
+      {
+        id: "p9",
+        name: "한담해변",
+        category: "attraction",
+        description: "산책하기 좋은 조용한 해변",
+        imageUrl: "/images/places/handam-beach.jpg",
+        address: "제주 제주시 애월읍 곽지리",
+        tags: ["해변", "산책", "일몰"],
+      },
+      {
+        id: "p10",
+        name: "애월 풀빌라",
+        category: "accommodation",
+        description: "프라이빗한 공간에서 장기 숙박하기 좋은 풀빌라",
+        imageUrl: "/images/places/aewol-poolvilla.jpg",
+        address: "제주 제주시 애월읍",
+        tags: ["프라이빗", "수영장", "장기숙박"],
+      },
+    ],
+    reviews: [
+      {
+        id: "r6",
+        author: "강힐링",
+        rating: 5,
+        content:
+          "정말 힐링되는 곳이에요. 매일 바다를 보면서 작업하니 스트레스가 싹 사라졌어요. 장기 체류 강추합니다!",
+        date: new Date("2025-01-18"),
+        likeCount: 89,
+      },
+      {
+        id: "r7",
+        author: "송워케이션",
+        rating: 4,
+        content:
+          "자연 속에서 일하고 싶다면 최고의 선택! 다만 교통이 불편해서 렌터카는 필수입니다.",
+        date: new Date("2025-01-14"),
+        likeCount: 45,
+      },
+    ],
+    transportation: "제주공항에서 렌터카 또는 버스 이용 (약 40분)",
+    tips: [
+      "렌터카는 필수입니다. 대중교통이 불편해요",
+      "일몰 시간에 해안도로 드라이브를 추천합니다",
+      "장기 숙박 시 월세 협상이 가능한 곳이 많아요",
+      "겨울에는 바람이 강하니 방한 준비를 철저히 하세요",
+    ],
+  },
+};
+
+// slug로 상세 도시 정보 조회
+export function getCityDetailBySlug(slug: string): CityDetail | undefined {
+  return mockCityDetails[slug];
+}
+
+// 모든 도시 slug 목록 (정적 생성용)
+export function getAllCitySlugs(): string[] {
+  return mockCities.map((city) => city.slug);
+}

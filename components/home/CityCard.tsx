@@ -21,8 +21,10 @@ export function CityCard({ city }: CityCardProps) {
 
   // 좋아요 버튼 클릭
   const handleLike = (e: React.MouseEvent) => {
+
     e.preventDefault();
     e.stopPropagation();
+
     if (liked) {
       setLiked(false);
       setLikeCount((prev) => prev - 1);
@@ -38,8 +40,10 @@ export function CityCard({ city }: CityCardProps) {
 
   // 싫어요 버튼 클릭
   const handleDislike = (e: React.MouseEvent) => {
+
     e.preventDefault();
     e.stopPropagation();
+
     if (disliked) {
       setDisliked(false);
       setDislikeCount((prev) => prev - 1);
@@ -82,6 +86,7 @@ export function CityCard({ city }: CityCardProps) {
   };
 
   return (
+
     <Link href={`/cities/${city.id}`} className="block">
       <Card className="group relative overflow-hidden transition-card hover:-translate-y-1 hover:shadow-card-hover cursor-pointer">
         {/* 대표 이미지 */}
@@ -89,10 +94,10 @@ export function CityCard({ city }: CityCardProps) {
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/60 z-10" />
         <div className="absolute inset-0 flex items-center justify-center z-20">
           <h3 className="text-3xl font-bold text-white">🏙️ {city.name}</h3>
-        </div>
-      </div>
 
-      <div className="p-5">
+        </div>
+
+        <div className="p-5">
         {/* 상단 정보: 순위 배지와 설명 */}
         <div className="mb-4 flex items-start gap-3">
           {/* 순위 배지 */}
@@ -192,8 +197,10 @@ export function CityCard({ city }: CityCardProps) {
             <span className="text-sm font-medium">{dislikeCount}</span>
           </Button>
         </div>
+
       </div>
     </Card>
+
     </Link>
   );
 }
