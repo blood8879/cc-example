@@ -177,7 +177,7 @@ export function CityCard({ city }: CityCardProps) {
         </div>
 
         {/* 좋아요/싫어요 버튼 */}
-        <div className="mt-4 flex gap-2 border-t pt-4">
+        <div className="mt-4 flex justify-between border-t pt-4">
           <Button
             variant="ghost"
             size="sm"
@@ -193,8 +193,8 @@ export function CityCard({ city }: CityCardProps) {
             className={`flex items-center gap-2 ${disliked ? "text-gray-500" : ""}`}
             onClick={handleDislike}
           >
-            <ThumbsDown className={`h-4 w-4 ${disliked ? "fill-gray-500" : ""}`} />
             <span className="text-sm font-medium">{dislikeCount}</span>
+            <ThumbsDown className={`h-4 w-4 ${disliked ? "fill-gray-500" : ""}`} />
           </Button>
         </div>
 
